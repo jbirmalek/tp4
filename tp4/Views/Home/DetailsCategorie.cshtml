@@ -1,0 +1,28 @@
+﻿@model tp4.Models.Categorie
+@{
+    ViewBag.Title = "Produit";
+}
+<h1>Liste des produits de la catégorie : @Model.Nom</h1>
+<br />
+<br />
+<div class="card-group">
+    @foreach (var produit in Model.Produits)
+    {
+        <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+            <div class="card-header">
+                <h5><b>Désignation : </b> @produit.Nom</h5>
+                <h5><b>Prix :</b>@produit.Prix</h5>
+            </div>
+            <center>
+                <img src="~/images/@produit.Image" style="width:250px;height:200px">
+              </center>
+
+                <div class="caption">
+                    <center>
+                        <a href="/Produit/DetailsCat/@produit.ProduitId" class="btn btn-default" role="button">Details »</a>
+                        @Html.ActionLink("Ajouter au panier »", "AjouterProduit", "Panier", new { id = @produit.ProduitId }, "")
+                    </center>
+                </div>
+        </div>
+    }
+</div>
